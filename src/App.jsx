@@ -1,10 +1,12 @@
 import * as React from 'react'
 import './App.css'
-
+import dayMusic from "./music/day-time.mp3"
+import noonMusic from "./music/outside.mp3"
+import nightMusic from "./music/night-time.mp3"
 function App() {
   const [timeData,setTimeData] = React.useState(null);
   const [dayTime,setDayTime] = React.useState("day");
-  const [music,setMusic] = React.useState(new Audio('/music/day-time.mp3'))
+  const [music,setMusic] = React.useState(dayMusic);
   const DAY_WEEK = [
     "Sunday",
     "Monday",
@@ -35,17 +37,16 @@ function App() {
         const res = await fetch("https://worldtimeapi.org/api/ip")
         const data = await res.json()
         setTimeData(data)
-
         const currentHour = new Date(data.datetime).getHours();
         if(currentHour>6 && currentHour<12){
           setDayTime("day")
-          setMusic(new Audio('/music/day-time.mp3'))
+          setMusic(new Audio(dayMusic))
         } else if (currentHour>12 && currentHour<18){
           setDayTime("afternoon")
-          setMusic(new Audio('/music/outside.mp3'))
+          setMusic(new Audio(noonMusic))
         } else {
           setDayTime("night")
-          setMusic(new Audio('/music/night-time.mp3'))
+          setMusic(new Audio(nightMusic))
         }
       } catch (error) {
         console.error(error)
