@@ -22,7 +22,6 @@ html,body,#root{
   font-weight: 400;
   font-size: 26px;
 }
-.day{}
 .afternoon{
   color: #fff;
   filter: brightness(.7) contrast(4);
